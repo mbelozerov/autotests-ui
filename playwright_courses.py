@@ -40,9 +40,15 @@ with sync_playwright() as playwright:
         expect(courses_title).to_be_visible()
         expect(courses_title).to_have_text('Courses')
 
-        block_title = page.get_by_test_id('courses-list-empty-view-title-text')
-        expect(block_title).to_be_visible()
-        expect(block_title).to_have_text('There is no results')
+        courses_icon = page.get_by_test_id('courses-list-empty-view-icon')
+        expect(courses_title).to_be_visible()
 
+        block_title_1 = page.get_by_test_id('courses-list-empty-view-title-text')
+        expect(block_title_1).to_be_visible()
+        expect(block_title_1).to_have_text('There is no results')
+
+        block_title_2 = page.get_by_test_id('courses-list-empty-view-description-text')
+        expect(block_title_2).to_be_visible()
+        expect(block_title_2).to_have_text('Results from the load test pipeline will be displayed here')
 
         page.wait_for_timeout(5000)
