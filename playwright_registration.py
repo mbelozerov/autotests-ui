@@ -24,4 +24,13 @@ with sync_playwright() as playwright:
     registration_button.click()
 
     # Сохраняем состояние браузера (куки и localStorage) в файл для дальнейшего использования
-    context.storage_state(path="browser-state.json")
+    context.storage_state(path='browser-state.json')
+
+with sync_playwright() as playwright:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context(storage_state='browser-state.json')
+    page = context.new_page()
+
+    page.goto('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/dashboard')
+
+    page.wait_for_timeout(5000)
